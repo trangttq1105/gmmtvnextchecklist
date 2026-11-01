@@ -17,73 +17,144 @@ const STORAGE_KEY = "somsomChecklistProgress";
 
 const replyText = "\n" + HASHTAG;
 
-const missions = [
+
+// =====================================
+// MISSION GROUPS
+// =====================================
+
+const missionGroups = [
   {
-    id: "poster-repost",
-    text: "Like and repost the new series poster",
-    link: POSTER_URL
+    id: "general",
+    title: "General",
+    missions: [
+      {
+        id: "general-post",
+        text: "Post about FirstKhaotung with keywords and hashtags"
+      },
+      {
+        id: "general-engage",
+        text: "Engage with other posts"
+      }
+    ]
   },
+
   {
-    id: "poster-reply",
-    text: "Reply to the new series poster",
-    link:
-      "https://x.com/intent/tweet?in_reply_to=1993291330819440690&text=" +
-      encodeURIComponent(replyText)
+    id: "gmmtv-posts",
+    title: "FirstKhaotung Posts on @GMMTV",
+    missions: [
+      {
+        id: "poster-repost",
+        text: "Like and repost the new series poster",
+        link: POSTER_URL
+      },
+      {
+        id: "poster-reply",
+        text: "Reply to the new series poster",
+        link:
+          "https://x.com/intent/tweet?in_reply_to=1993291330819440690&text=" +
+          encodeURIComponent(replyText)
+      },
+      {
+        id: "poster-quote",
+        text: "Quote the new series poster",
+        link:
+          "https://x.com/intent/tweet?url=" +
+          encodeURIComponent(POSTER_URL) +
+          "&text=" +
+          encodeURIComponent(replyText)
+      },
+      {
+        id: "poster-share",
+        text: "Copy the post link and share it",
+        link: POSTER_URL
+      }
+    ]
   },
+
   {
-    id: "poster-quote",
-    text: "Quote the new series poster",
-    link:
-      "https://x.com/intent/tweet?url=" +
-      encodeURIComponent(POSTER_URL) +
-      "&text=" +
-      encodeURIComponent(replyText)
-  },
-  {
-    id: "follow-account",
-    text: "Follow the series account: @IVSBDragon",
-    link: SERIES_ACCOUNT_URL,
-    linkText: "@IVSBDragon"
-  },
-  {
-    id: "series-repost",
-    text: "Like and repost the new series post on @IVSBDragon",
-    link: SERIES_POST_URL
-  },
-  {
-    id: "series-reply",
-    text: "Reply to the new series post on @IVSBDragon",
-    link:
-      "https://x.com/intent/tweet?in_reply_to=1993292545854734599&text=" +
-      encodeURIComponent(replyText)
-  },
-  {
-    id: "series-quote",
-    text: "Quote the new series post on @IVSBDragon",
-    link:
-      "https://x.com/intent/tweet?url=" +
-      encodeURIComponent(SERIES_POST_URL) +
-      "&text=" +
-      encodeURIComponent(replyText)
-  },
-  {
-    id: "youtube-share",
-    text: "Watch the new series pilot on YouTube, like and share it",
-    link: YOUTUBE_PILOT_URL
-  },
-  {
-    id: "youtube-views",
-    text: "Watch the new series pilot on YouTube at least 10 times",
-    link: YOUTUBE_PILOT_URL
-  },
-  {
-    id: "hashtag-posts",
-    text: "Publish at least 10 posts using #TheInvisibleDragon",
-    link:
-      "https://x.com/intent/tweet?text=" +
-      encodeURIComponent(replyText)
+    id: "series",
+    title: "FirstKhaotung Series",
+    missions: [
+      {
+        id: "series-gmmtv-repost",
+        text: "Like and repost posters on @GMMTV",
+        link: POSTER_URL
+      },
+      {
+        id: "series-gmmtv-reply",
+        text: "Reply to posters on @GMMTV with photo/video, keywords and hashtags",
+        link:
+          "https://x.com/intent/tweet?in_reply_to=1993291330819440690&text=" +
+          encodeURIComponent(replyText)
+      },
+      {
+        id: "series-gmmtv-quote",
+        text: "Quote posters on @GMMTV with photo/video, keywords and hashtags",
+        link:
+          "https://x.com/intent/tweet?url=" +
+          encodeURIComponent(POSTER_URL) +
+          "&text=" +
+          encodeURIComponent(replyText)
+      },
+      {
+        id: "series-gmmtv-share",
+        text: "Copy the post link and share it",
+        link: POSTER_URL
+      },
+      {
+        id: "follow-account",
+        text: "Follow the series account: @IVSBDragon",
+        link: SERIES_ACCOUNT_URL,
+        linkText: "@IVSBDragon"
+      },
+      {
+        id: "series-account-repost",
+        text: "Like and repost posters on @IVSBDragon",
+        link: SERIES_POST_URL
+      },
+      {
+        id: "series-account-reply",
+        text: "Reply to posters on @IVSBDragon with photo/video, keywords and hashtags",
+        link:
+          "https://x.com/intent/tweet?in_reply_to=1993292545854734599&text=" +
+          encodeURIComponent(replyText)
+      },
+      {
+        id: "series-account-quote",
+        text: "Quote posters on @IVSBDragon with photo/video, keywords and hashtags",
+        link:
+          "https://x.com/intent/tweet?url=" +
+          encodeURIComponent(SERIES_POST_URL) +
+          "&text=" +
+          encodeURIComponent(replyText)
+      },
+      {
+        id: "series-account-share",
+        text: "Copy the post link and share it",
+        link: SERIES_POST_URL
+      },
+      {
+        id: "youtube-share",
+        text: "Watch the new series pilot on YouTube, like and share it",
+        link: YOUTUBE_PILOT_URL
+      },
+      {
+        id: "youtube-views",
+        text: "Watch the new series pilot on YouTube at least 10 times",
+        link: YOUTUBE_PILOT_URL
+      }
+    ]
   }
 ];
+
+
+// =====================================
+// HELPER FUNCTIONS
+// =====================================
+
+function getAllMissions() {
+  return missionGroups.flatMap((group) => group.missions);
+}
 
 function getSavedProgress() {
   try {
@@ -98,6 +169,10 @@ function saveProgress(progress) {
 }
 
 function createMissionLink(mission) {
+  if (!mission.link) {
+    return mission.text;
+  }
+
   if (mission.linkText) {
     return mission.text.replace(
       mission.linkText,
@@ -108,40 +183,88 @@ function createMissionLink(mission) {
   return `<a href="${mission.link}" target="_blank" rel="noopener noreferrer">${mission.text}</a>`;
 }
 
+
+// =====================================
+// RENDER MISSION GROUPS
+// =====================================
+
 function renderMissions() {
   const container = document.getElementById("missionList");
   const savedProgress = getSavedProgress();
 
-  container.innerHTML = missions.map((mission) => {
-    const checked = savedProgress[mission.id] ? "checked" : "";
+  container.innerHTML = missionGroups.map((group, index) => {
+    const isFirstGroup = index === 0;
+
+    const missionHTML = group.missions.map((mission) => {
+      const checked = savedProgress[mission.id] ? "checked" : "";
+
+      return `
+        <div class="mission-item">
+          <input
+            class="mission-checkbox"
+            type="checkbox"
+            id="mission-${mission.id}"
+            data-mission-id="${mission.id}"
+            ${checked}
+          >
+
+          <div class="mission-label">
+            ${createMissionLink(mission)}
+          </div>
+        </div>
+      `;
+    }).join("");
 
     return `
-      <div class="mission-item">
-        <input
-          class="mission-checkbox"
-          type="checkbox"
-          id="mission-${mission.id}"
-          data-mission-id="${mission.id}"
-          ${checked}
-        >
+      <section class="mission-group ${isFirstGroup ? "is-open" : ""}">
 
-        <div class="mission-label">
-          ${createMissionLink(mission)}
+        <button
+          class="group-toggle"
+          type="button"
+          aria-expanded="${isFirstGroup}"
+          aria-controls="group-content-${group.id}"
+        >
+          <span class="group-title">
+            <span class="group-number">
+              ${String(index + 1).padStart(2, "0")}
+            </span>
+
+            ${group.title}
+          </span>
+
+          <span class="group-icon" aria-hidden="true"></span>
+        </button>
+
+        <div
+          class="group-content"
+          id="group-content-${group.id}"
+          ${isFirstGroup ? "" : "hidden"}
+        >
+          <div class="group-missions">
+            ${missionHTML}
+          </div>
         </div>
-      </div>
+
+      </section>
     `;
   }).join("");
 }
 
+
+// =====================================
+// OVERALL PROGRESS
+// =====================================
+
 function updateProgress() {
   const savedProgress = getSavedProgress();
+  const missions = getAllMissions();
 
   const completed = missions.filter(
     (mission) => savedProgress[mission.id]
   ).length;
 
   const total = missions.length;
-  const percentage = (completed / total) * 100;
+  const percentage = total > 0 ? (completed / total) * 100 : 0;
 
   document.getElementById("progressText").textContent =
     `You've completed ${completed}/${total} missions!`;
@@ -149,23 +272,21 @@ function updateProgress() {
   document.getElementById("progressBar").style.width =
     `${percentage}%`;
 
-  document.getElementById("progressTrack").setAttribute(
-    "aria-valuenow",
-    completed
-  );
+  const progressTrack = document.getElementById("progressTrack");
+
+  progressTrack.setAttribute("aria-valuemax", total);
+  progressTrack.setAttribute("aria-valuenow", completed);
 
   const congratulations =
     document.getElementById("congratulations");
 
   congratulations.hidden = completed !== total;
-
-  const shareButton = document.getElementById("shareButton");
-
-  shareButton.innerHTML =
-    completed === total
-      ? 'Share Your Achievement <span aria-hidden="true">↗</span>'
-      : 'Share Your Achievement <span aria-hidden="true">↗</span>';
 }
+
+
+// =====================================
+// EVENT HANDLERS
+// =====================================
 
 function handleMissionChange(event) {
   if (!event.target.matches(".mission-checkbox")) {
@@ -181,8 +302,32 @@ function handleMissionChange(event) {
   updateProgress();
 }
 
+function handleGroupToggle(event) {
+  const button = event.target.closest(".group-toggle");
+
+  if (!button) {
+    return;
+  }
+
+  const group = button.closest(".mission-group");
+  const content = group.querySelector(".group-content");
+
+  const isOpen = button.getAttribute("aria-expanded") === "true";
+
+  button.setAttribute("aria-expanded", String(!isOpen));
+  content.hidden = isOpen;
+
+  group.classList.toggle("is-open", !isOpen);
+}
+
+
+// =====================================
+// SHARE ACHIEVEMENT
+// =====================================
+
 function shareAchievement() {
   const progress = getSavedProgress();
+  const missions = getAllMissions();
 
   const completed = missions.filter(
     (mission) => progress[mission.id]
@@ -199,7 +344,7 @@ function shareAchievement() {
   if (completed === total) {
     postText =
       `I've completed all ${total}/${total} missions to support ` +
-    `#FirstKhaotung and #TheInvisibleDragon at #GMMTVNEXT! ` +
+      `#FirstKhaotung and #TheInvisibleDragon at #GMMTVNEXT! ` +
       `Join the mission and invite your moots too!\n\n` +
       `https://trangttq1105.github.io/somsomchecklist/`;
   }
@@ -211,6 +356,11 @@ function shareAchievement() {
   window.open(shareUrl, "_blank", "noopener,noreferrer");
 }
 
+
+// =====================================
+// INITIALIZE
+// =====================================
+
 renderMissions();
 updateProgress();
 
@@ -219,8 +369,12 @@ document.getElementById("missionList").addEventListener(
   handleMissionChange
 );
 
+document.getElementById("missionList").addEventListener(
+  "click",
+  handleGroupToggle
+);
+
 document.getElementById("shareButton").addEventListener(
   "click",
   shareAchievement
 );
-
