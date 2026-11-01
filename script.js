@@ -224,15 +224,18 @@ function renderMissions() {
           aria-expanded="${isFirstGroup}"
           aria-controls="group-content-${group.id}"
         >
-          <span class="group-title">
-            <span class="group-number">
-              ${String(index + 1).padStart(2, "0")}
-            </span>
+<span class="group-title">
+  <span class="group-name">
+    <span class="group-number">
+      ${String(index + 1).padStart(2, "0")}
+    </span>
+    ${group.title}
+  </span>
 
-            ${group.title}
-          </span>
+  <span class="group-hint">Click to see full list</span>
+</span>
 
-          <span class="group-icon" aria-hidden="true"></span>
+<span class="group-icon" aria-hidden="true"></span>
         </button>
 
         <div
