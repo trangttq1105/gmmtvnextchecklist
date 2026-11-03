@@ -512,16 +512,20 @@ function shareAchievement() {
 
   let postText =
     `I've completed ${completed}/${total} missions to support ` +
-    `#FirstKhaotung at #GMMTVNEXT! ` +
+    `#FirstKhaotung and #ASeasonToRememberSeries` +
     `Join me and let's support them together!\n\n` +
+    `FIRSTKHAOTUNG NEXT CHAPTER\n\n` +
+    `#GMMTVNEXT\n\n` +
     `https://trangttq1105.github.io/somsomchecklist/`;
 
   if (completed === total) {
     postText =
       `I've completed all ${total}/${total} missions to support ` +
       `#FirstKhaotung at #GMMTVNEXT! ` +
-      `Join the mission and invite your moots too!\n\n` +
-      `https://trangttq1105.github.io/somsomchecklist/`;
+     `Join me and let's support them together!\n\n` +
+    `FIRSTKHAOTUNG NEXT CHAPTER\n\n` +
+    `#GMMTVNEXT\n\n` +
+    `https://trangttq1105.github.io/somsomchecklist/`;
   }
 
   const shareUrl =
