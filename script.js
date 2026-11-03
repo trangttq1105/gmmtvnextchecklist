@@ -1,17 +1,17 @@
 
 const POSTER_URL =
-  "https://x.com/GMMTV/status/1993291330819440690";
+  "https://x.com/GMMTV/status/2117556593642627315";
 
 const SERIES_POST_URL =
-  "https://x.com/IVSBDragon/status/1993292545854734599";
+  "https://x.com/SeasonRemember/status/2117560439014138362";
 
 const SERIES_ACCOUNT_URL =
-  "https://x.com/IVSBDragon";
+  "https://x.com/SeasonRemember";
 
 // Replace this with the official YouTube pilot URL when available.
-const YOUTUBE_PILOT_URL = "https://www.youtube.com/";
+const YOUTUBE_PILOT_URL = "https://www.youtube.com/watch?v=PxzcfYOXCYU";
 
-const HASHTAG = "#TheInvisibleDragon";
+const HASHTAG = "#ASeasonToRememberSeries";
 
 const STORAGE_KEY = "somsomChecklistProgress";
 
@@ -33,7 +33,7 @@ const missionGroups = [
       },
       {
         id: "general-engage",
-        text: "Engage with other posts"
+        text: "Like, repost, reply and quote other fans' posts"
       }
     ]
   },
@@ -43,37 +43,41 @@ const missionGroups = [
     title: "FirstKhaotung Posts on @GMMTV",
     missions: [
       {
-        id: "poster-repost",
-        text: "Like and repost the new series poster",
-        link: POSTER_URL
+        id: "gmmtv-firstkhaotung",
+        text: "Like and repost FirstKhaotung check in post on @GMMTV",
+        link: https://x.com/GMMTV/status/2117539840992661646
       },
       {
-        id: "poster-reply",
-        text: "Reply to the new series poster",
-        link:
-          "https://x.com/intent/tweet?in_reply_to=1993291330819440690&text=" +
-          encodeURIComponent(replyText)
+        id: "gmmtv-firstkhaotung-reply",
+        text: "Reply and quote FirstKhaotung check in post on @GMMTV",
+        link: https://x.com/GMMTV/status/2117539840992661646
       },
-      {
-        id: "poster-quote",
-        text: "Quote the new series poster",
-        link:
-          "https://x.com/intent/tweet?url=" +
-          encodeURIComponent(POSTER_URL) +
-          "&text=" +
-          encodeURIComponent(replyText)
-      },
-      {
-        id: "poster-share",
+       {
+        id: "gmmtv-firstkhaotung-share",
         text: "Copy the post link and share it",
-        link: POSTER_URL
+        link: https://x.com/GMMTV/status/2117519980816384435
+      }
+      {
+        id: "gmmtv-yuzumumu",
+        text: "Like and repost YUZUMUMU check in post on @GMMTV",
+        link: https://x.com/GMMTV/status/2117519980816384435
+      },
+      {
+        id: "gmmtv-yuzumumu-reply",
+        text: "Reply and quote YUZUMUMU check in post on @GMMTV",
+        link: https://x.com/GMMTV/status/2117519980816384435
+      },      
+      {
+        id: "gmmtv-yuzumumu-share",
+        text: "Copy the post link and share it",
+        link: https://x.com/GMMTV/status/2117519980816384435
       }
     ]
   },
 
   {
-    id: "series",
-    title: "FirstKhaotung Series",
+    id: "SeasonRemember",
+    title: "ตรีวัชรกาล A SEASON TO REMEMBER",
     missions: [
       {
         id: "series-gmmtv-repost",
@@ -84,7 +88,7 @@ const missionGroups = [
         id: "series-gmmtv-reply",
         text: "Reply to posters on @GMMTV with photo/video, keywords and hashtags",
         link:
-          "https://x.com/intent/tweet?in_reply_to=1993291330819440690&text=" +
+          "https://x.com/intent/tweet?in_reply_to=2117556593642627315&text=" +
           encodeURIComponent(replyText)
       },
       {
@@ -103,25 +107,25 @@ const missionGroups = [
       },
       {
         id: "follow-account",
-        text: "Follow the series account: @IVSBDragon",
+        text: "Follow the series account: @SeasonRemember",
         link: SERIES_ACCOUNT_URL,
-        linkText: "@IVSBDragon"
+        linkText: "@SeasonRemember"
       },
       {
         id: "series-account-repost",
-        text: "Like and repost posters on @IVSBDragon",
+        text: "Like and repost posters on @SeasonRemember",
         link: SERIES_POST_URL
       },
       {
         id: "series-account-reply",
-        text: "Reply to posters on @IVSBDragon with photo/video, keywords and hashtags",
+        text: "Reply to posters on @SeasonRemember with photo/video, keywords and hashtags",
         link:
           "https://x.com/intent/tweet?in_reply_to=1993292545854734599&text=" +
           encodeURIComponent(replyText)
       },
       {
         id: "series-account-quote",
-        text: "Quote posters on @IVSBDragon with photo/video, keywords and hashtags",
+        text: "Quote posters on @SeasonRemember with photo/video, keywords and hashtags",
         link:
           "https://x.com/intent/tweet?url=" +
           encodeURIComponent(SERIES_POST_URL) +
