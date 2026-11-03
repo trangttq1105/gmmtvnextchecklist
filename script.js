@@ -512,7 +512,7 @@ function shareAchievement() {
 
   let postText =
     `I've completed ${completed}/${total} missions to support ` +
-    `#FirstKhaotung and #ASeasonToRememberSeries` +
+    `#FirstKhaotung and #ASeasonToRememberSeries !` +
     `Join me and let's support them together!\n\n` +
     `FIRSTKHAOTUNG NEXT CHAPTER\n\n` +
     `#GMMTVNEXT\n\n` +
@@ -521,7 +521,7 @@ function shareAchievement() {
   if (completed === total) {
     postText =
       `I've completed all ${total}/${total} missions to support ` +
-      `#FirstKhaotung at #GMMTVNEXT! ` +
+      `#FirstKhaotung and #ASeasonToRememberSeries !` +
      `Join me and let's support them together!\n\n` +
     `FIRSTKHAOTUNG NEXT CHAPTER\n\n` +
     `#GMMTVNEXT\n\n` +
