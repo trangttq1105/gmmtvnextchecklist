@@ -1,21 +1,66 @@
 
-const POSTER_URL =
-  "https://x.com/GMMTV/status/2117556593642627315";
-
-const SERIES_POST_URL =
-  "https://x.com/SeasonRemember/status/2117560439014138362";
-
-const SERIES_ACCOUNT_URL =
-  "https://x.com/SeasonRemember";
-
-// Replace this with the official YouTube pilot URL when available.
-const YOUTUBE_PILOT_URL = "https://www.youtube.com/watch?v=PxzcfYOXCYU";
-
-const HASHTAG = "#ASeasonToRememberSeries";
-
 const STORAGE_KEY = "somsomChecklistProgress";
 
-const replyText = "\n" + HASHTAG;
+const GMMTV_FK_POST =
+  "https://x.com/GMMTV/status/2117539840992661646";
+
+const GMMTV_YUZUMUMU_POST =
+  "https://x.com/GMMTV/status/2117519980816384435";
+
+const SEASON_GMMTV_POST =
+  "https://x.com/GMMTV/status/2117556593642627315";
+
+const SEASON_ACCOUNT =
+  "https://x.com/SeasonRemember";
+
+const SEASON_ACCOUNT_POST =
+  "https://x.com/SeasonRemember/status/2117560439014138362";
+
+const YOUTUBE_URL =
+  "https://www.youtube.com/watch?v=PxzcfYOXCYU";
+
+const GENERAL_POST_TEXT =
+  "FIRSTKHAOTUNG NEXT CHAPTER\n\n" +
+  "#GMMTVNEXT\n" +
+  "#Firstkhaotung";
+
+const SEASON_POST_TEXT =
+  "FIRSTKHAOTUNG NEXT CHAPTER\n\n" +
+  "#GMMTVNEXT\n" +
+  "#ASeasonToRememberSeries\n" +
+  "#Firstkhaotung";
+
+
+// =====================================
+// X POST / REPLY / QUOTE LINK HELPERS
+// =====================================
+
+function createPostLink(text) {
+  return (
+    "https://x.com/intent/tweet?text=" +
+    encodeURIComponent(text)
+  );
+}
+
+function createReplyLink(postUrl, text) {
+  const postId = postUrl.split("/status/")[1];
+
+  return (
+    "https://x.com/intent/tweet?in_reply_to=" +
+    postId +
+    "&text=" +
+    encodeURIComponent(text)
+  );
+}
+
+function createQuoteLink(postUrl, text) {
+  return (
+    "https://x.com/intent/tweet?url=" +
+    encodeURIComponent(postUrl) +
+    "&text=" +
+    encodeURIComponent(text)
+  );
+}
 
 
 // =====================================
@@ -26,126 +71,173 @@ const missionGroups = [
   {
     id: "general",
     title: "General",
+
     missions: [
       {
         id: "general-post",
-        text: "Post about FirstKhaotung with keywords and hashtags"
+        text:
+          "Post about FirstKhaotung (better with photo/video) " +
+          "with keywords and hashtags",
+        link: createPostLink(GENERAL_POST_TEXT)
       },
+
       {
         id: "general-engage",
-        text: "Like, repost, reply and quote other fans' posts"
+        text:
+          "Like / Repost / Quote / Reply other Somsoms' posts"
       }
     ]
   },
 
+
   {
-    id: "gmmtv-posts",
-    title: "FirstKhaotung Posts on @GMMTV",
+    id: "gmmtv-fk-yuzumumu",
+    title: "FirstKhaotung + YUZUMUMU post on @GMMTV",
+
     missions: [
       {
-        id: "gmmtv-firstkhaotung",
-        text: "Like and repost FirstKhaotung check in post on @GMMTV",
-        link: https://x.com/GMMTV/status/2117539840992661646
+        id: "gmmtv-fk-repost",
+        text:
+          "Like and repost FirstKhaotung check-in post on @GMMTV",
+        link: GMMTV_FK_POST
       },
+
       {
-        id: "gmmtv-firstkhaotung-reply",
-        text: "Reply and quote FirstKhaotung check in post on @GMMTV",
-        link: https://x.com/GMMTV/status/2117539840992661646
+        id: "gmmtv-fk-reply",
+        text:
+          "Reply to the FirstKhaotung check-in post " +
+          "(better with photo/video) with keywords and hashtags",
+        link: createReplyLink(
+          GMMTV_FK_POST,
+          GENERAL_POST_TEXT
+        )
       },
-       {
-        id: "gmmtv-firstkhaotung-share",
-        text: "Copy the post link and share it",
-        link: https://x.com/GMMTV/status/2117519980816384435
-      }
+
+      {
+        id: "gmmtv-fk-quote",
+        text:
+          "Quote the FirstKhaotung check-in post " +
+          "(better with photo/video) with keywords and hashtags",
+        link: createQuoteLink(
+          GMMTV_FK_POST,
+          GENERAL_POST_TEXT
+        )
+      },
+
+      {
+        id: "gmmtv-fk-share",
+        text:
+          "Copy the link of the FirstKhaotung post and share it",
+        link: GMMTV_FK_POST
+      },
+
       {
         id: "gmmtv-yuzumumu",
-        text: "Like and repost YUZUMUMU check in post on @GMMTV",
-        link: https://x.com/GMMTV/status/2117519980816384435
-      },
-      {
-        id: "gmmtv-yuzumumu-reply",
-        text: "Reply and quote YUZUMUMU check in post on @GMMTV",
-        link: https://x.com/GMMTV/status/2117519980816384435
-      },      
-      {
-        id: "gmmtv-yuzumumu-share",
-        text: "Copy the post link and share it",
-        link: https://x.com/GMMTV/status/2117519980816384435
+        text:
+          "Like / Repost / Quote / Reply YUZUMUMU check-in post on @GMMTV",
+        link: GMMTV_YUZUMUMU_POST
       }
     ]
   },
 
+
   {
-    id: "SeasonRemember",
+    id: "a-season-to-remember",
     title: "ตรีวัชรกาล A SEASON TO REMEMBER",
+
     missions: [
       {
-        id: "series-gmmtv-repost",
-        text: "Like and repost posters on @GMMTV",
-        link: POSTER_URL
+        id: "season-gmmtv-repost",
+        text:
+          "Like and repost posters on @GMMTV",
+        link: SEASON_GMMTV_POST
       },
+
       {
-        id: "series-gmmtv-reply",
-        text: "Reply to posters on @GMMTV with photo/video, keywords and hashtags",
-        link:
-          "https://x.com/intent/tweet?in_reply_to=2117556593642627315&text=" +
-          encodeURIComponent(replyText)
+        id: "season-gmmtv-reply",
+        text:
+          "Reply to posters on @GMMTV " +
+          "(better with photo/video) with keywords and hashtags",
+        link: createReplyLink(
+          SEASON_GMMTV_POST,
+          SEASON_POST_TEXT
+        )
       },
+
       {
-        id: "series-gmmtv-quote",
-        text: "Quote posters on @GMMTV with photo/video, keywords and hashtags",
-        link:
-          "https://x.com/intent/tweet?url=" +
-          encodeURIComponent(POSTER_URL) +
-          "&text=" +
-          encodeURIComponent(replyText)
+        id: "season-gmmtv-quote",
+        text:
+          "Quote posters on @GMMTV " +
+          "(better with photo/video) with keywords and hashtags",
+        link: createQuoteLink(
+          SEASON_GMMTV_POST,
+          SEASON_POST_TEXT
+        )
       },
+
       {
-        id: "series-gmmtv-share",
-        text: "Copy the post link and share it",
-        link: POSTER_URL
+        id: "season-gmmtv-share",
+        text:
+          "Copy the link of the @GMMTV post and share it",
+        link: SEASON_GMMTV_POST
       },
+
       {
-        id: "follow-account",
-        text: "Follow the series account: @SeasonRemember",
-        link: SERIES_ACCOUNT_URL,
+        id: "season-follow",
+        text:
+          "Follow the series account @SeasonRemember",
+        link: SEASON_ACCOUNT,
         linkText: "@SeasonRemember"
       },
+
       {
-        id: "series-account-repost",
-        text: "Like and repost posters on @SeasonRemember",
-        link: SERIES_POST_URL
+        id: "season-account-repost",
+        text:
+          "Like and repost the series post on @SeasonRemember",
+        link: SEASON_ACCOUNT_POST
       },
+
       {
-        id: "series-account-reply",
-        text: "Reply to posters on @SeasonRemember with photo/video, keywords and hashtags",
-        link:
-          "https://x.com/intent/tweet?in_reply_to=1993292545854734599&text=" +
-          encodeURIComponent(replyText)
+        id: "season-account-reply",
+        text:
+          "Reply to the series post on @SeasonRemember " +
+          "(better with photo/video) with keywords and hashtags",
+        link: createReplyLink(
+          SEASON_ACCOUNT_POST,
+          SEASON_POST_TEXT
+        )
       },
+
       {
-        id: "series-account-quote",
-        text: "Quote posters on @SeasonRemember with photo/video, keywords and hashtags",
-        link:
-          "https://x.com/intent/tweet?url=" +
-          encodeURIComponent(SERIES_POST_URL) +
-          "&text=" +
-          encodeURIComponent(replyText)
+        id: "season-account-quote",
+        text:
+          "Quote the series post on @SeasonRemember " +
+          "(better with photo/video) with keywords and hashtags",
+        link: createQuoteLink(
+          SEASON_ACCOUNT_POST,
+          SEASON_POST_TEXT
+        )
       },
+
       {
-        id: "series-account-share",
-        text: "Copy the post link and share it",
-        link: SERIES_POST_URL
+        id: "season-account-share",
+        text:
+          "Copy the link of the @SeasonRemember post and share it",
+        link: SEASON_ACCOUNT_POST
       },
+
       {
-        id: "youtube-share",
-        text: "Watch the new series pilot on YouTube, like and share it",
-        link: YOUTUBE_PILOT_URL
+        id: "season-youtube-share",
+        text:
+          "Watch it on YouTube + like + share",
+        link: YOUTUBE_URL
       },
+
       {
-        id: "youtube-views",
-        text: "Watch the new series pilot on YouTube at least 10 times",
-        link: YOUTUBE_PILOT_URL
+        id: "season-youtube-views",
+        text:
+          "Watch it on YouTube at least 10 times",
+        link: YOUTUBE_URL
       }
     ]
   }
@@ -153,24 +245,41 @@ const missionGroups = [
 
 
 // =====================================
-// HELPER FUNCTIONS
+// GET ALL MISSIONS
 // =====================================
 
 function getAllMissions() {
-  return missionGroups.flatMap((group) => group.missions);
+  return missionGroups.flatMap(
+    (group) => group.missions
+  );
 }
+
+
+// =====================================
+// SAVE / LOAD PROGRESS
+// =====================================
 
 function getSavedProgress() {
   try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    return JSON.parse(
+      localStorage.getItem(STORAGE_KEY)
+    ) || {};
   } catch (error) {
     return {};
   }
 }
 
 function saveProgress(progress) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(progress)
+  );
 }
+
+
+// =====================================
+// CREATE MISSION LINK
+// =====================================
 
 function createMissionLink(mission) {
   if (!mission.link) {
@@ -184,82 +293,108 @@ function createMissionLink(mission) {
     );
   }
 
-  return `<a href="${mission.link}" target="_blank" rel="noopener noreferrer">${mission.text}</a>`;
+  return (
+    `<a href="${mission.link}" target="_blank" rel="noopener noreferrer">` +
+    `${mission.text}</a>`
+  );
 }
 
 
 // =====================================
-// RENDER MISSION GROUPS
+// RENDER GROUPS
 // =====================================
 
 function renderMissions() {
-  const container = document.getElementById("missionList");
+  const container =
+    document.getElementById("missionList");
+
   const savedProgress = getSavedProgress();
 
-  container.innerHTML = missionGroups.map((group, index) => {
-    const isFirstGroup = index === 0;
+  container.innerHTML = missionGroups.map(
+    (group, index) => {
 
-    const missionHTML = group.missions.map((mission) => {
-      const checked = savedProgress[mission.id] ? "checked" : "";
+      const isFirstGroup = index === 0;
+
+      const missionHTML = group.missions.map(
+        (mission) => {
+
+          const checked =
+            savedProgress[mission.id] ? "checked" : "";
+
+          return `
+            <div class="mission-item">
+
+              <input
+                class="mission-checkbox"
+                type="checkbox"
+                id="mission-${mission.id}"
+                data-mission-id="${mission.id}"
+                ${checked}
+              >
+
+              <div class="mission-label">
+                ${createMissionLink(mission)}
+              </div>
+
+            </div>
+          `;
+        }
+      ).join("");
 
       return `
-        <div class="mission-item">
-          <input
-            class="mission-checkbox"
-            type="checkbox"
-            id="mission-${mission.id}"
-            data-mission-id="${mission.id}"
-            ${checked}
+        <section class="mission-group ${isFirstGroup ? "is-open" : ""}">
+
+          <button
+            class="group-toggle"
+            type="button"
+            aria-expanded="${isFirstGroup}"
+            aria-controls="group-content-${group.id}"
           >
 
-          <div class="mission-label">
-            ${createMissionLink(mission)}
+            <span class="group-title">
+
+              <span class="group-name">
+                <span class="group-number">
+                  ${String(index + 1).padStart(2, "0")}
+                </span>
+
+                ${group.title}
+              </span>
+
+              <span class="group-hint">
+                Click to see full list
+              </span>
+
+            </span>
+
+            <span
+              class="group-icon"
+              aria-hidden="true"
+            ></span>
+
+          </button>
+
+          <div
+            class="group-content"
+            id="group-content-${group.id}"
+            ${isFirstGroup ? "" : "hidden"}
+          >
+
+            <div class="group-missions">
+              ${missionHTML}
+            </div>
+
           </div>
-        </div>
+
+        </section>
       `;
-    }).join("");
-
-    return `
-      <section class="mission-group ${isFirstGroup ? "is-open" : ""}">
-
-        <button
-          class="group-toggle"
-          type="button"
-          aria-expanded="${isFirstGroup}"
-          aria-controls="group-content-${group.id}"
-        >
-<span class="group-title">
-  <span class="group-name">
-    <span class="group-number">
-      ${String(index + 1).padStart(2, "0")}
-    </span>
-    ${group.title}
-  </span>
-
-  <span class="group-hint">Click to see full list</span>
-</span>
-
-<span class="group-icon" aria-hidden="true"></span>
-        </button>
-
-        <div
-          class="group-content"
-          id="group-content-${group.id}"
-          ${isFirstGroup ? "" : "hidden"}
-        >
-          <div class="group-missions">
-            ${missionHTML}
-          </div>
-        </div>
-
-      </section>
-    `;
-  }).join("");
+    }
+  ).join("");
 }
 
 
 // =====================================
-// OVERALL PROGRESS
+// UPDATE OVERALL PROGRESS
 // =====================================
 
 function updateProgress() {
@@ -271,7 +406,9 @@ function updateProgress() {
   ).length;
 
   const total = missions.length;
-  const percentage = total > 0 ? (completed / total) * 100 : 0;
+
+  const percentage =
+    total > 0 ? (completed / total) * 100 : 0;
 
   document.getElementById("progressText").textContent =
     `You've completed ${completed}/${total} missions!`;
@@ -279,52 +416,83 @@ function updateProgress() {
   document.getElementById("progressBar").style.width =
     `${percentage}%`;
 
-  const progressTrack = document.getElementById("progressTrack");
+  const progressTrack =
+    document.getElementById("progressTrack");
 
-  progressTrack.setAttribute("aria-valuemax", total);
-  progressTrack.setAttribute("aria-valuenow", completed);
+  progressTrack.setAttribute(
+    "aria-valuemax",
+    total
+  );
+
+  progressTrack.setAttribute(
+    "aria-valuenow",
+    completed
+  );
 
   const congratulations =
     document.getElementById("congratulations");
 
-  congratulations.hidden = completed !== total;
+  congratulations.hidden =
+    completed !== total;
 }
 
 
 // =====================================
-// EVENT HANDLERS
+// CHECKBOX CHANGE
 // =====================================
 
 function handleMissionChange(event) {
-  if (!event.target.matches(".mission-checkbox")) {
+  if (
+    !event.target.matches(".mission-checkbox")
+  ) {
     return;
   }
 
   const progress = getSavedProgress();
-  const missionId = event.target.dataset.missionId;
 
-  progress[missionId] = event.target.checked;
+  const missionId =
+    event.target.dataset.missionId;
+
+  progress[missionId] =
+    event.target.checked;
 
   saveProgress(progress);
   updateProgress();
 }
 
+
+// =====================================
+// GROUP OPEN / CLOSE
+// =====================================
+
 function handleGroupToggle(event) {
-  const button = event.target.closest(".group-toggle");
+  const button =
+    event.target.closest(".group-toggle");
 
   if (!button) {
     return;
   }
 
-  const group = button.closest(".mission-group");
-  const content = group.querySelector(".group-content");
+  const group =
+    button.closest(".mission-group");
 
-  const isOpen = button.getAttribute("aria-expanded") === "true";
+  const content =
+    group.querySelector(".group-content");
 
-  button.setAttribute("aria-expanded", String(!isOpen));
+  const isOpen =
+    button.getAttribute("aria-expanded") === "true";
+
+  button.setAttribute(
+    "aria-expanded",
+    String(!isOpen)
+  );
+
   content.hidden = isOpen;
 
-  group.classList.toggle("is-open", !isOpen);
+  group.classList.toggle(
+    "is-open",
+    !isOpen
+  );
 }
 
 
@@ -344,14 +512,14 @@ function shareAchievement() {
 
   let postText =
     `I've completed ${completed}/${total} missions to support ` +
-    `#FirstKhaotung and #TheInvisibleDragon at #GMMTVNEXT! ` +
+    `#FirstKhaotung at #GMMTVNEXT! ` +
     `Join me and let's support them together!\n\n` +
     `https://trangttq1105.github.io/somsomchecklist/`;
 
   if (completed === total) {
     postText =
       `I've completed all ${total}/${total} missions to support ` +
-      `#FirstKhaotung and #TheInvisibleDragon at #GMMTVNEXT! ` +
+      `#FirstKhaotung at #GMMTVNEXT! ` +
       `Join the mission and invite your moots too!\n\n` +
       `https://trangttq1105.github.io/somsomchecklist/`;
   }
@@ -360,7 +528,11 @@ function shareAchievement() {
     "https://x.com/intent/tweet?text=" +
     encodeURIComponent(postText);
 
-  window.open(shareUrl, "_blank", "noopener,noreferrer");
+  window.open(
+    shareUrl,
+    "_blank",
+    "noopener,noreferrer"
+  );
 }
 
 
